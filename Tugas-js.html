@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tugas JavaScript | Natasya Olivia</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .font-display {
+            font-family: "Playfair Display", serif;
+        }
+    </style>
+</head>
+
+
+<body class="bg-[#f5f7fb] text-slate-800">
+
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="sticky top-0 z-50 bg-[#f5f7fb]/95 backdrop-blur-md border-b border-slate-200">
+
+        <nav class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-display font-bold">
+                <span class="text-blue-600">22</span><span>🎀</span>
+            </a>
+
+
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-9 text-[16px]">
+
+                <a href="index.html"
+                   class="text-slate-600 hover:text-blue-600 transition">
+                    Beranda
+                </a>
+
+                <a href="About.html"
+                   class="text-slate-600 hover:text-blue-600 transition">
+                    Tentang
+                </a>
+
+                <a href="Proyek.html"
+                   class="text-slate-600 hover:text-blue-600 transition">
+                    Proyek
+                </a>
+
+                <a href="Tugas-js.html"
+                   class="text-blue-600 font-semibold border-b-[3px] border-blue-600 pb-3">
+                    Tugas JS
+                </a>
+
+                <a href="Contact.html"
+                   class="bg-gradient-to-r from-blue-600 to-cyan-400 text-white px-6 py-3 rounded-full shadow-lg shadow-blue-200 hover:scale-105 transition">
+                    Kontak
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= JUDUL ================= -->
+
+    <section class="max-w-6xl mx-auto px-6 pt-7 pb-10">
+
+        <p class="text-blue-600 font-mono text-[16px] mb-3">
+            /tugas-javascript
+        </p>
+
+
+        <h1 class="font-display text-5xl md:text-6xl text-slate-900 leading-tight">
+            Aplikasi Catatan Tugas
+        </h1>
+
+
+        <p class="mt-4 text-[18px] text-slate-600 max-w-2xl leading-relaxed">
+            Tugas mata kuliah Pemrograman Web: membuat aplikasi
+            catatan tugas interaktif menggunakan JavaScript murni
+            (vanilla JS) dan menyimpan datanya di
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded text-blue-700">
+                localStorage
+            </code>
+            browser.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= APLIKASI ================= -->
+
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+
+
+        <div class="max-w-[690px] mx-auto">
+
+
+            <!-- CARD -->
+
+            <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/70 overflow-hidden border border-slate-200">
+
+
+                <!-- HEADER CARD -->
+
+                <div class="bg-gradient-to-r from-blue-600 to-cyan-400 px-7 py-4 text-white">
+
+                    <div class="flex items-center gap-2 font-semibold text-[17px]">
+
+                        <span class="text-lg">
+                            ☑
+                        </span>
+
+                        <span>
+                            Catatan Tugas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ISI CARD -->
+
+                <div class="p-7">
+
+
+                    <!-- INPUT TUGAS -->
+
+                    <form id="taskForm" class="flex gap-2">
+
+                        <input
+                            type="text"
+                            id="taskInput"
+                            placeholder="Tulis tugas baru..."
+                            autocomplete="off"
+                            class="flex-1 border border-slate-300 rounded-xl px-4 py-3 text-[16px] outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+
+
+                        <button
+                            type="submit"
+                            class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-semibold hover:shadow-lg hover:shadow-blue-200 transition">
+
+                            Tambah
+
+                        </button>
+
+                    </form>
+
+
+
+                    <!-- FILTER -->
+
+                    <div class="flex flex-wrap items-center justify-between gap-4 mt-5">
+
+
+                        <div class="flex items-center gap-2">
+
+
+                            <button
+                                onclick="ubahFilter('semua')"
+                                id="filterSemua"
+                                class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-200">
+
+                                Semua
+
+                            </button>
+
+
+                            <button
+                                onclick="ubahFilter('belum')"
+                                id="filterBelum"
+                                class="filter-btn px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100">
+
+                                Belum selesai
+
+                            </button>
+
+
+                            <button
+                                onclick="ubahFilter('selesai')"
+                                id="filterSelesai"
+                                class="filter-btn px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-slate-100">
+
+                                Selesai
+
+                            </button>
+
+
+                        </div>
+
+
+
+                        <button
+                            onclick="hapusSelesai()"
+                            class="text-sm text-slate-600 hover:text-red-500 transition">
+
+                            Hapus yang selesai
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- DAFTAR TUGAS -->
+
+                    <div
+                        id="taskList"
+                        class="mt-6 space-y-3">
+
+
+                        <div
+                            id="emptyMessage"
+                            class="text-center py-10 text-slate-500">
+
+                            Belum ada tugas. Tambahkan satu di atas.
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- GARIS -->
+
+                    <div class="border-t border-slate-200 mt-8"></div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="border-t border-slate-200 bg-white">
+
+        <div class="max-w-6xl mx-auto px-6 py-7 text-center">
+
+            <p class="text-sm text-slate-500">
+
+                © 2026 Natasya Olivia Karlolina Pangaribuan
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // Mengambil data tugas dari localStorage
+        let tugas =
+            JSON.parse(
+                localStorage.getItem("tugasNatasya")
+            ) || [];
+
+
+        // Filter yang sedang digunakan
+        let filterSekarang = "semua";
+
+
+
+        // ================= TAMBAH TUGAS =================
+
+        document
+            .getElementById("taskForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const input =
+                    document.getElementById("taskInput");
+
+
+                const namaTugas =
+                    input.value.trim();
+
+
+                // Jika input kosong
+                if (namaTugas === "") {
+
+                    alert("Tulis tugas terlebih dahulu!");
+
+                    return;
+                }
+
+
+                // Menambahkan tugas
+                tugas.push({
+
+                    id: Date.now(),
+
+                    nama: namaTugas,
+
+                    selesai: false
+
+                });
+
+
+                // Simpan data
+                simpanTugas();
+
+
+                // Kosongkan input
+                input.value = "";
+
+
+                // Tampilkan tugas
+                tampilkanTugas();
+
+            });
+
+
+
+        // ================= MENAMPILKAN TUGAS =================
+
+        function tampilkanTugas() {
+
+
+            const list =
+                document.getElementById("taskList");
+
+
+            list.innerHTML = "";
+
+
+            let dataTugas = tugas;
+
+
+
+            // Filter belum selesai
+            if (filterSekarang === "belum") {
+
+                dataTugas =
+                    tugas.filter(function(item) {
+
+                        return !item.selesai;
+
+                    });
+
+            }
+
+
+
+            // Filter selesai
+            if (filterSekarang === "selesai") {
+
+                dataTugas =
+                    tugas.filter(function(item) {
+
+                        return item.selesai;
+
+                    });
+
+            }
+
+
+
+            // Jika tidak ada tugas
+            if (dataTugas.length === 0) {
+
+                list.innerHTML = `
+
+                    <div class="text-center py-10 text-slate-500">
+
+                        Belum ada tugas.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            // Membuat daftar tugas
+            dataTugas.forEach(function(item) {
+
+
+                const div =
+                    document.createElement("div");
+
+
+                div.className =
+                    "flex items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200";
+
+
+
+                div.innerHTML = `
+
+                    <div class="flex items-center gap-3">
+
+                        <input
+                            type="checkbox"
+                            ${item.selesai ? "checked" : ""}
+                            onchange="ubahStatus(${item.id})"
+                            class="w-5 h-5 accent-blue-600 cursor-pointer"
+                        >
+
+
+                        <span
+                            class="${
+                                item.selesai
+                                ? "line-through text-slate-400"
+                                : "text-slate-700"
+                            }">
+
+                            ${item.nama}
+
+                        </span>
+
+                    </div>
+
+
+
+                    <button
+                        onclick="hapusTugas(${item.id})"
+                        class="text-slate-400 hover:text-red-500 transition">
+
+                        ✕
+
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            });
+
+        }
+
+
+
+        // ================= UBAH STATUS =================
+
+        function ubahStatus(id) {
+
+
+            tugas =
+                tugas.map(function(item) {
+
+
+                    if (item.id === id) {
+
+                        item.selesai =
+                            !item.selesai;
+
+                    }
+
+
+                    return item;
+
+                });
+
+
+            simpanTugas();
+
+            tampilkanTugas();
+
+        }
+
+
+
+        // ================= HAPUS TUGAS =================
+
+        function hapusTugas(id) {
+
+
+            tugas =
+                tugas.filter(function(item) {
+
+                    return item.id !== id;
+
+                });
+
+
+            simpanTugas();
+
+            tampilkanTugas();
+
+        }
+
+
+
+        // ================= FILTER =================
+
+        function ubahFilter(filter) {
+
+
+            filterSekarang = filter;
+
+
+            // Mengambil semua tombol filter
+            document
+                .querySelectorAll(".filter-btn")
+                .forEach(function(button) {
+
+
+                    button.classList.remove(
+                        "bg-gradient-to-r",
+                        "from-blue-600",
+                        "to-cyan-400",
+                        "text-white",
+                        "shadow-lg",
+                        "shadow-blue-200"
+                    );
+
+
+                    button.classList.add(
+                        "text-slate-600"
+                    );
+
+                });
+
+
+
+            let tombol;
+
+
+
+            if (filter === "semua") {
+
+                tombol =
+                    document.getElementById(
+                        "filterSemua"
+                    );
+
+            }
+
+
+
+            if (filter === "belum") {
+
+                tombol =
+                    document.getElementById(
+                        "filterBelum"
+                    );
+
+            }
+
+
+
+            if (filter === "selesai") {
+
+                tombol =
+                    document.getElementById(
+                        "filterSelesai"
+                    );
+
+            }
+
+
+
+            tombol.classList.remove(
+                "text-slate-600"
+            );
+
+
+            tombol.classList.add(
+                "bg-gradient-to-r",
+                "from-blue-600",
+                "to-cyan-400",
+                "text-white",
+                "shadow-lg",
+                "shadow-blue-200"
+            );
+
+
+            tampilkanTugas();
+
+        }
+
+
+
+        // ================= HAPUS TUGAS SELESAI =================
+
+        function hapusSelesai() {
+
+
+            tugas =
+                tugas.filter(function(item) {
+
+                    return !item.selesai;
+
+                });
+
+
+            simpanTugas();
+
+            tampilkanTugas();
+
+        }
+
+
+
+        // ================= LOCAL STORAGE =================
+
+        function simpanTugas() {
+
+
+            localStorage.setItem(
+                "tugasNatasya",
+                JSON.stringify(tugas)
+            );
+
+        }
+
+
+
+        // ================= SAAT HALAMAN DIBUKA =================
+
+        tampilkanTugas();
+
+    </script>
+
+</body>
+</html>
